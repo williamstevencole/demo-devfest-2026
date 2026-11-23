@@ -1,0 +1,7 @@
+-r requirements.txt
+# RAGAS 0.4.x no longer imports the old langchain-community vertexai module.
+# It declares scikit-network, but only uses it for testset graph generation,
+# which this eval does not use. Pin 0.12.1 because it is pure Python and has a
+# wheel for Python 3.14; newer scikit-network needs a C++ compiler.
+ragas==0.4.4
+scikit-network==0.12.1

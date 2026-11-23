@@ -1,0 +1,22 @@
+[
+  {
+    "id": "etf",
+    "question": "¿Qué es un ETF?",
+    "reference": "Un ETF es un fondo que se negocia en bolsa como una acción y representa una canasta de instrumentos."
+  },
+  {
+    "id": "retiro",
+    "question": "¿Cuánto cobran por retirar?",
+    "reference": "La comisión de trading es $0. Se aplica un spread cambiario de 0.75% cuando hay conversión de moneda; la venta liquida en T+1 y el retiro tarda de 2 a 3 días hábiles."
+  },
+  {
+    "id": "diversificacion",
+    "question": "¿Qué es la diversificación?",
+    "reference": "Diversificar es repartir el capital entre instrumentos, sectores y regiones para que el resultado no dependa de una sola empresa."
+  },
+  {
+    "id": "pe",
+    "question": "¿Qué es el P/E?",
+    "reference": "El P/E relaciona el precio de una acción con su ganancia por acción. Un P/E alto puede reflejar expectativas de crecimiento o un precio exigente; uno bajo, una oportunidad o un riesgo."
+  }
+]

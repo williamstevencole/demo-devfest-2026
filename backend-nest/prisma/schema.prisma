@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum RiskProfile {
+  CONSERVATIVE
+  MODERATE
+  AGGRESSIVE
+}
+
+enum InstrumentType {
+  STOCK
+  ETF
+}
+
+model User {
+  id             String      @id
+  identityNumber String      @unique
+  name           String
+  email          String
+  riskProfile    RiskProfile
+  country     String
+  cashUsd     Float
+  positions   Position[]
+
+  @@map("users")
+}
+
+model Instrument {
+  ticker            String         @id
+  name              String
+  type              InstrumentType
+  sector            String?
+  price             Price?
+  positions         Position[]
+  etfHoldings       EtfHolding[]   @relation("EtfHolding_etf")
+  componentHoldings EtfHolding[]   @relation("EtfHolding_component")
+
+  @@map("instruments")
+}
+
+model Price {
+  ticker     String     @id
+  priceUsd   Float
+  asOf       DateTime
+  instrument Instrument @relation(fields: [ticker], references: [ticker])
+
+  @@map("prices")
+}
+
+model Position {
+  id         String     @id @default(cuid())
+  userId     String
+  ticker     String
+  quantity   Float
+  avgCostUsd Float
+  user       User       @relation(fields: [userId], references: [id])
+  instrument Instrument @relation(fields: [ticker], references: [ticker])
+
+  @@unique([userId, ticker])
+  @@map("positions")
+}
+
+model EtfHolding {
+  etfTicker       String
+  componentTicker String
+  weightPct       Float
+  etf             Instrument @relation("EtfHolding_etf", fields: [etfTicker], references: [ticker])
+  component       Instrument @relation("EtfHolding_component", fields: [componentTicker], references: [ticker])
+
+  @@id([etfTicker, componentTicker])
+  @@map("etf_holdings")
+}

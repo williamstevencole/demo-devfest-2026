@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+.env
+.venv/
+data/
+node_modules/
+dist/
+coverage/
+*.db
+*.sqlite
+*.sqlite3
+*.log
+.DS_Store
+.pytest_cache/
+.ruff_cache/
+
+# Evaluación y documentación interna
+agent-service/eval/results/
+docs/
